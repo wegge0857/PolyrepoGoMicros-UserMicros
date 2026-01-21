@@ -17,6 +17,7 @@ type User struct {
 // 实现逻辑：在data层 返回格式 必须为biz.UserRepo
 type UserRepo interface {
 	FindByID(ctx context.Context, id int64) (*User, error)
+	UserStarRecord(ctx context.Context, userId int64, etfId int64) error
 }
 
 // UserUseCase 是业务逻辑主体
@@ -32,4 +33,9 @@ func NewUserUseCase(repo UserRepo, logger log.Logger) *UserUseCase {
 // Get 获取用户业务逻辑
 func (uc *UserUseCase) Get(ctx context.Context, id int64) (*User, error) {
 	return uc.repo.FindByID(ctx, id)
+}
+
+// UserStarRecord func
+func (uc *UserUseCase) UserStarRecord(ctx context.Context, userId int64, etfId int64) error {
+	return uc.repo.UserStarRecord(ctx, userId, etfId)
 }

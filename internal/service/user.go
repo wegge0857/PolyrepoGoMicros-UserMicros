@@ -24,6 +24,7 @@ func NewUserService(uc *biz.UserUseCase) *UserService {
 	}
 }
 
+// GetUser
 func (s *UserService) GetUser(ctx context.Context, req *userV1.GetUserRequest) (*userV1.GetUserReply, error) {
 	// 调用 biz 层
 	u, err := s.uc.Get(ctx, req.Id)
@@ -36,6 +37,17 @@ func (s *UserService) GetUser(ctx context.Context, req *userV1.GetUserRequest) (
 		Email: u.Email,
 	}, nil
 }
+
+// UserStarRecord
+func (s *UserService) UserStarRecord(ctx context.Context, req *userV1.UserStarRecordRequest) (*userV1.UserStarRecordReply, error) {
+	// 调用 biz 层
+	err := s.uc.UserStarRecord(ctx, req.UserId, req.EtfId)
+	if err != nil {
+		return nil, err
+	}
+	return &userV1.UserStarRecordReply{}, nil
+}
+
 func (s *UserService) CreateUser(ctx context.Context, req *userV1.CreateUserRequest) (*userV1.CreateUserReply, error) {
 	return &userV1.CreateUserReply{}, nil
 }
