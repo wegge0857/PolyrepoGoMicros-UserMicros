@@ -17,3 +17,12 @@ go get github.com/dtm-labs/client
 ### 在对应的微服务data层
 ### import "github.com/dtm-labs/client/dtmcli"
 ### dtmcli.SetBarrierTableName("barrier")
+
+### 接口生成 Mock 代码文件
+```bash
+mockery --name=UserRepo --dir=internal/biz --output=internal/biz/mocks
+```
+## 测试
+```bash
+  go test -v ./internal/biz/
+```
