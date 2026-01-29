@@ -22,7 +22,10 @@ go get github.com/dtm-labs/client
 ```bash
 mockery --name=UserRepo --dir=internal/biz --output=internal/biz/mocks
 ```
-## 测试
+### 测试
 ```bash
   go test -v ./internal/biz/
 ```
+
+### 运行
+go run .\cmd\userMicros\ -conf .\configs\
